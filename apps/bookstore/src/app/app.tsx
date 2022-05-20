@@ -1,16 +1,18 @@
-import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
+import React from "react";
+import styled from "styled-components";
 
 const StyledApp = styled.div`
-  // Your style here
+  //Here your style
 `;
 
-export function App() {
-  return (
+export const App = () => {
+  return(
     <StyledApp>
-      <NxWelcome title="bookstore" />
+      <header>
+        <h1>Bookstore</h1>
+      </header>
     </StyledApp>
   );
-}
+};
 
 export default App;
