@@ -1,6 +1,28 @@
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {getBooks} from '@myorg/books/data-access';
+import {Books, Book} from '@myorg/books/ui';
 
-/* eslint-disable-next-line */
+
+export const BooksFeature = ()=>{
+  const  [books, setBooks] = useState([{}]);
+
+  useEffect(()=>{
+    getBooks().then(setBooks);
+  },[]);
+
+  return(
+    <>
+      <h2>Books</h2>
+      <Books  books={books} onAdd={book => alert(`Added ${book.title} to Cart`)}/>
+    </>
+  )
+}
+
+export default BooksFeature;
+
+/*
+// eslint-disable-next-line
 export interface BooksFeatureProps {}
 
 const StyledBooksFeature = styled.div`
@@ -15,4 +37,4 @@ export function BooksFeature(props: BooksFeatureProps) {
   );
 }
 
-export default BooksFeature;
+export default BooksFeature;*/
