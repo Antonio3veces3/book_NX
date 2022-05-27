@@ -1,23 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {getBooks} from '@myorg/books/data-access';
-import {Books, Book} from '@myorg/books/ui';
+import { getBooks } from '@myorg/books/data-access';
+import { Books, Book } from '@myorg/books/ui';
+import { InterfaceBook } from '../../../../shared-models/src/lib/shared-models';
 
+export const BooksFeature = () => {
+  const [books, setBooks] = useState([{}] as InterfaceBook[]);
 
-export const BooksFeature = ()=>{
-  const  [books, setBooks] = useState([{}]);
+  useEffect(() => {
+    getBooks().then(setBooks).catch(console.log);
+  }, []);
 
-  useEffect(()=>{
-    getBooks().then(setBooks);
-  },[]);
-
-  return(
+  return (
     <>
       <h2>Books</h2>
-      <Books  books={books} onAdd={book => alert(`Added ${book.title} to Cart`)}/>
+      <Books
+        books={books}
+        onAdd={(book) => alert(`Added ${book.title} to Cart`)}
+      />
     </>
-  )
-}
+  );
+};
 
 export default BooksFeature;
 
